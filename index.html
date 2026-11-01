@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMDB - Movie Discovery & Recommendation Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="overlay">
+            <nav>
+                <h1>AMDB<span> by AJ</span></h1>
+            </nav>
+
+            <div class="hero-content">
+                <h2>Discover Movies You’ll Actually Want to Watch</h2>
+                <p>Search, explore, filter by genre, and get rule-based recommendations.</p>
+
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for a movie...">
+                    <button onclick="searchMovie()">Search</button>
+                </div>
+
+                <div class="filter-box">
+                    <select id="genreSelect" onchange="filterByGenre()">
+                        <option value="">All Genres</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="recommend-panel">
+            <h2 class="section-title">Get Recommendations</h2>
+            <p class="recommend-sub">Pick a few genres you like, set a minimum rating, and the system will rank movies for you.</p>
+
+            <div id="genreChips" class="genre-chips"></div>
+
+            <div class="recommend-controls">
+                <label for="minRating">Minimum rating: <span id="minRatingValue">6.0</span></label>
+                <input type="range" id="minRating" min="0" max="9" step="0.5" value="6"
+                    oninput="document.getElementById('minRatingValue').textContent = Number(this.value).toFixed(1)">
+                <button onclick="getRecommendations()">Get My Recommendations</button>
+            </div>
+
+            <div id="recommendedMovies" class="recommend-results"></div>
+        </section>
+
+        <h2 class="section-title" id="sectionTitle">Popular Movies</h2>
+        <div id="movies"></div>
+    </main>
+
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="movieDetails"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
